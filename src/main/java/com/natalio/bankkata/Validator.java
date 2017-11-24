@@ -21,7 +21,7 @@ public class Validator {
 
         return IntStream.iterate(9, x -> x-1)
             .limit(9)
-            .reduce(0, (acc, multiplier) -> Character.getNumericValue(number.charAt(9 - multiplier)) * multiplier);
+            .reduce(0, (acc, multiplier) -> acc + Character.getNumericValue(number.charAt(9 - multiplier)) * multiplier);
     }
 
     public static boolean validate(String number) {
