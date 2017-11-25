@@ -1,8 +1,7 @@
 package main.java.com.natalio.bankkata;
 
-
 //Having done that, you quickly realize that the ingenious machine is not in fact infallible. Sometimes it goes
-// wrong in its scanning. The next step therefore is to validate that the numbers you read are in fact valid
+// wrong in its scanning. The next step therefore is to checkSum that the numbers you read are in fact valid
 // account numbers. A valid account number has a valid checksum. This can be calculated as follows:
 //
 //    account number:  3  4  5  8  8  2  8  6  5
@@ -16,7 +15,7 @@ package main.java.com.natalio.bankkata;
 
 import java.util.stream.IntStream;
 
-public class Validator {
+public class Checker {
     public static int calculateSum(String number) {
 
         return IntStream.iterate(9, x -> x-1)
@@ -24,7 +23,9 @@ public class Validator {
             .reduce(0, (acc, multiplier) -> acc + Character.getNumericValue(number.charAt(9 - multiplier)) * multiplier);
     }
 
-    public static boolean validate(String number) {
+    public static boolean checkSum(String inputText) {
+        String number = Scanner.scanNumber(inputText);
+
         return calculateSum(number) % 11 == 0;
     }
 }

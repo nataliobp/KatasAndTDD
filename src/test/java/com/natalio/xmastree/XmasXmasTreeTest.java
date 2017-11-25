@@ -9,9 +9,17 @@ public class XmasXmasTreeTest {
 
 
     @Test
-    public void oneShouldPrintOneDot(){
-        assertEquals(".\n", XmasTree.treeWritter(1));
-        assertEquals(" .\n...\n", XmasTree.treeWritter(2));
-        assertEquals("  .\n ...\n.....\n", XmasTree.treeWritter(3));
+    public void testOneLine(){
+        assertEquals(".\n", XmasTree.treeBuilder(1));
+    }
+
+    @Test
+    public void testTwoLines(){
+        assertEquals(" .\n...\n", XmasTree.treeBuilder(2));
+    }
+
+    @Test
+    public void testThreeLines(){
+        assertEquals("  .\n ...\n.....\n", XmasTree.treeBuilder(3));
     }
 }

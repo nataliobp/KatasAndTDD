@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class ScannerTest {
     @Test
     public void scan1() throws Exception {
-        assertEquals(1, Scanner.scanNumber("" +
+        assertEquals("1", Scanner.scanNumber("" +
             "   \n" +
             "  |\n" +
             "  |\n"));
@@ -19,7 +19,7 @@ public class ScannerTest {
 
     @Test
     public void scan12() throws Exception {
-        assertEquals(12, Scanner.scanNumber(
+        assertEquals("12", Scanner.scanNumber(
             "    _ \n" +
             "  | _|\n" +
             "  ||_ \n"
@@ -32,5 +32,20 @@ public class ScannerTest {
             "    _  _     _  _  _  _  _  _ \n" +
             "  | _| _||_||_ |_ | |  ||_||_|\n" +
             "  ||_  _|  | _||_||_|  ||_| _|\n"));
+    }
+
+    @Test
+    public void scanNumberWithIllegibleDigit() throws Exception {
+        assertEquals("49006771?", Scanner.scanNumber("" +
+            "    _  _  _  _  _  _     _ \n" +
+            "|_||_|| || ||_   |  |  | _ \n" +
+            "  | _||_||_||_|  |  |  | _|\n")
+        );
+
+        assertEquals("1234?678?", Scanner.scanNumber("" +
+            "    _  _     _  _  _  _  _ \n" +
+            "  | _| _||_| _ |_   ||_||_|\n" +
+            "  ||_  _|  | _||_|  ||_| _ \n")
+        );
     }
 }

@@ -55,7 +55,7 @@ public class Scanner {
 
        return Arrays.stream(scannedDigits)
             .map(aDigit -> String.join("", aDigit))
-            .map(map::get)
+            .map(aDigit -> map.getOrDefault(aDigit, "?"))
             .reduce("", (a, b) -> a+b);
     }
 }

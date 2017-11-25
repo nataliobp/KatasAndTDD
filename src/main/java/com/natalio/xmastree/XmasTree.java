@@ -1,5 +1,7 @@
 package main.java.com.natalio.xmastree;
 
+import java.util.stream.IntStream;
+
 //christmasTree(height) that returns a christmas tree of the correct height
 //
 //    christmasTree(5) should return:
@@ -9,46 +11,38 @@ package main.java.com.natalio.xmastree;
 //      *****
 //     *******
 //    *********
+
 public class XmasTree {
+
+    public static final String SPACE = " ";
+    public static final String DOT = ".";
+    public static final String NEW_LINE = "\n";
+
     public static void main(String[] args){
         christmasTree(5);
     }
 
-
     private static void christmasTree(int n) {
-        System.out.println(treeWritter(n));
+        System.out.println(treeBuilder(n));
     }
 
-    public static String treeWritter(int n) {
+    public static String treeBuilder(int n) {
             StringBuilder s = new StringBuilder();
 
-            for (int spaces = n - 1, dots = 1; spaces >= 0; spaces--, dots = dots + 2) {
-                s.append(space(spaces));
-                s.append(dot(dots));
-                s.append("\n");
+            for (int numSpaces = n - 1, numDots = 1; numSpaces >= 0; numSpaces--, numDots = numDots + 2) {
+                s.append(writeCharacter(SPACE, numSpaces));
+                s.append(writeCharacter(DOT, numDots));
+                s.append(NEW_LINE);
             }
 
             return s.toString();
     }
 
-    private static String dot(int repeat) {
-        StringBuilder builder = new StringBuilder();
+    private static String writeCharacter(String character, int repeat) {
 
-        for(int i = 0; i < repeat; i++){
-            builder.append(".");
-        }
-
-        return builder.toString();
+        return IntStream.range(0, repeat)
+            .mapToObj(i -> character)
+            .reduce((result, a) -> result+=a)
+            .orElse("");
     }
-
-    private static String space(int repeat) {
-        StringBuilder builder = new StringBuilder();
-
-        for(int i = 0; i < repeat; i++){
-            builder.append(" ");
-        }
-
-        return builder.toString();
-    }
-
 }
