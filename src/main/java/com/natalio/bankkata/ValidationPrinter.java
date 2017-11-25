@@ -14,18 +14,14 @@ public class ValidationPrinter {
     public static String printResultOf(String inputText) {
         String number = Scanner.scanNumber(inputText);
 
-        return (number + " " + checkStatus(number, inputText)).trim();
-    }
-
-    public static String checkStatus(String number, String inputText){
         if(number.contains("?")){
-            return "ILL";
+            return number + " ILL";
         }
 
         if(!Checker.checkSum(inputText)){
-            return "ERR";
+            return number + " ERR";
         }
 
-        return "";
+        return number;
     }
 }

@@ -14,39 +14,37 @@ package main.java.com.natalio.bankkata;
 
 import test.java.com.natalio.bankkata.Solution;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class Fixer {
+    private static final Character[] symbols = new Character[]{'|', ' ', '_'};
+
     public static String fix(String inputText) {
-        String number = Scanner.scanNumber(inputText);
-
-        if(ValidationPrinter.checkStatus(number, inputText).equals("")){
-            return number;
-        }
-
-        return findMatchesByReplacingACharacter(inputText);
-    }
-
-    private static String findMatchesByReplacingACharacter(String inputText) {
-        char[] symbols = new char[]{'|', ' ', '_'};
-        char[] inputTextChars = inputText.toCharArray();
         Solution solution = new Solution(Scanner.scanNumber(inputText));
 
-        for(int i = 0; i < inputTextChars.length; i++)  {
-            if(inputTextChars[i] == '\n'){
-               continue;
-            }
-
-            for(char symbol : symbols){
-
-               StringBuilder sb = new StringBuilder(inputText);
-               sb.setCharAt(i, symbol);
-               String number = Scanner.scanNumber(sb.toString());
-
-               if("".equals(ValidationPrinter.checkStatus(number, sb.toString()))){
-                   solution.addSolution(number);
-               }
-            }
-        }
+        IntStream.range(0, inputText.length())
+            .filter(i -> inputText.charAt(i) != '\n')
+            .forEach(i ->
+                Arrays.stream(symbols)
+                    .filter(symbol -> !symbol.equals(inputText.charAt(i)))
+                    .map(symbol -> replaceSymbol(inputText, i, symbol))
+                    .filter(Fixer::isAValidNumber)
+                    .map(Scanner::scanNumber)
+                    .forEach(solution::addSolution)
+            );
 
         return solution.toString();
+    }
+
+    private static String replaceSymbol(String inputText, int i, Character symbol) {
+        StringBuilder sb = new StringBuilder(inputText);
+        sb.setCharAt(i, symbol);
+
+        return sb.toString();
+    }
+
+    private static boolean isAValidNumber(String newInputText) {
+        return Scanner.scanNumber(newInputText).equals(ValidationPrinter.printResultOf(newInputText));
     }
 }
