@@ -17,7 +17,7 @@ public class CoinChangeTest {
 
     @Test
     public void testTwoCoins() throws Exception {
-        assertEquals(3, CoinChange.calculateCombinations(new int[]{10,20}, 40));
+        assertEquals(3, CoinChange.calculateCombinations(new int[]{1,2}, 4));
     }
 
     @Test
