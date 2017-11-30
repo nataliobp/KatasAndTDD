@@ -1,3 +1,3 @@
-# KatasAndTDD
+# exercises_katas_tdd
 
-Just some katas to practice fundamentals and TDD
+Some katas and exercises for several places like codewars or hackerrank to keep practicing fundamentals and TDD
