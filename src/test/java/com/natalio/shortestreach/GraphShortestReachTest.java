@@ -3,7 +3,7 @@ package test.java.com.natalio.shortestreach;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import shortestreach.GraphShortestReach.Graph;
+import main.java.com.natalio.shortestreach.GraphShortestReach.Graph;
 
 import java.util.Arrays;
 

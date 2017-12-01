@@ -1,4 +1,4 @@
-package shortestreach;
+package main.java.com.natalio.shortestreach;
 
 import java.util.*;
 import java.util.stream.IntStream;
