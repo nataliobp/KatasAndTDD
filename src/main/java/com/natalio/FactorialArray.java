@@ -1,7 +1,5 @@
 package main.java.com.natalio;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -49,8 +47,8 @@ public class FactorialArray {
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new File("/home/natman/Repositories/java/TDD/src/main/java/com/natalio/input"));
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         int m = in.nextInt();
         long[] A = new long[n];
